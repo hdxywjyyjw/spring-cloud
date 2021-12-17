@@ -30,5 +30,23 @@
                discovery:
                  cluster-name: BJ  #定义地域化集群
 
-ribbon与racos区别：ribbon时spring中自带的，racos时阿里开发的。ribbon中服务下是实例。而
-racos中服务下既可以是集群（eg：地域化集群），也可以是实例。
+8:ribbon与nacos区别：ribbon时spring中自带的，nacos时阿里开发的。ribbon中服务下是实例。而
+nacos中服务下既可以是集群（eg：地域化集群），也可以是实例。
+
+9:nacos权重设置，当在同一个集群中的服务起，通过设置权重，来控制服务器使用频率。如果权重越高，访问频率也越高，
+权重设置0~1之间。当权重设置成0时，不会被访问。
+10：nacos命名控件配置。
+      application.yml中配置
+                spring:
+                  cloud:
+                    nacos:    #nacos负载配置
+                      server-addr: http://127.0.0.1:8848 # nacos服务地址
+                      discovery:
+                          namespace:dev7780ea96-fd03-4f5e-b95b-8d11678af895  #控件id
+  10.1:临时实例：通过心跳，告诉注册中心。非临时实例：主动去问实例是否正常，并且不会删除实例，一直等待实例启动。
+     设置在7的配置上加        ephemeral: false # 是否是临时实例
+
+11：bootstrap.yml比application.yml文件优先级要高。
+12:在配置nacos配置列表时，配置内容key和value中间一定要有空格。
+     eg:hahaCeshi: ASDASDASDADASDSDASDA(正确)
+        hahaCeshi:ASDASDASDADASDSDASDA（无法识别）

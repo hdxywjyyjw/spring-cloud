@@ -4,6 +4,7 @@ import com.xu.pojo.User;
 import com.xu.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -15,6 +16,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Value("${hahaCeshi}")
+    private String hahaCeshi;
 
     // @Value("${pattern.dateformat}")
     // private String dateformat;
@@ -39,9 +42,11 @@ public class UserController {
      * @return 用户
      */
     @GetMapping("/{id}")
+
     public User queryById(@PathVariable("id") Long id,
                           @RequestHeader(value = "Truth", required = false) String truth) {
         System.out.println("truth: " + truth);
+        System.out.println("hahaCeshi: " + hahaCeshi);
         return userService.queryById(id);
     }
 }
