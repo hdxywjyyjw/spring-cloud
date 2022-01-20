@@ -48,4 +48,12 @@ public class UserController {
         System.out.println("truth: " + truth);
         return orderService.queryById(id);
     }
+
+    @GetMapping("/feign/{id}")
+    public Order queryByIdForFeign(@PathVariable("id") Long id,
+                           @RequestHeader(value = "Truth", required = false) String truth) {
+        System.out.println("truth: " + truth);
+        return orderService.queryByIdForFeign(id);
+    }
+
 }

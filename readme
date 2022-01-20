@@ -1,3 +1,7 @@
+集群包括：eureka、nacos
+负载：ribbon、nacos
+
+
 1、RestTemplate：定义远程调用
 2、@EnableEurekaServer：eureka开关，配置启动类上
 3、@LoadBalanced：eureka实现负载机制，配置在RestTemplate
@@ -47,6 +51,10 @@ nacos中服务下既可以是集群（eg：地域化集群），也可以是实�
      设置在7的配置上加        ephemeral: false # 是否是临时实例
 
 11：bootstrap.yml比application.yml文件优先级要高。
-12:在配置nacos配置列表时，配置内容key和value中间一定要有空格。
+12:在配置nacos配置列表时，配置内容key和value中间一定要有空格。（实现配置文件外置）
      eg:hahaCeshi: ASDASDASDADASDSDASDA(正确)
         hahaCeshi:ASDASDASDADASDSDASDA（无法识别）
+
+13:外置文件热部署，无需项目重启
+   1、@RefreshScope：在@value注解的类上添加。
+   2、@ConfigurationProperties(prefix = "pattern")：直接在类上添加此注解，根据前缀找指定变量

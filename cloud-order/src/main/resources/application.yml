@@ -37,7 +37,7 @@ userserver:
 #饥饿加载：每次请求，都会重新创建连接链路
 ribbon:
   eager-load:
-    enabled: true # 开启饥饿加载
+    enabled: true # 开启饥饿加载order
     clients: # 指定饥饿加载的服务名称
       - userservice
     # -XXXservice  (多个服务)
